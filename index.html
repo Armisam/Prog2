@@ -5,12 +5,25 @@
     <title>PROG2 | MARKET</title>
     <link rel="stylesheet" href="assets/styles/reset.css" type="text/css">
     <link rel="stylesheet" href="assets/styles/index.css" type="text/css">
-    <script></script>
+    <script type="text/javascript" src="assets/scripts/designer.js"></script>
 </head>
 <body>
     <header>
-      <div class="lines"><img src="media/lines.png"></div>
-      <div class="title"><a href="index.html">PROG2 | MARKET</a></div>
+      <div class="lines">
+        <span>
+          <img class="lines_picture" src="media/lines.png" onclick="clicked_header()">
+          <h1 class="categories">CATEGORIES</h1 >
+        </span>
+        <div class="cat_link"><a  href="#">Cameras &amp; Photo</a></div>
+        <div class="cat_link"><a href="#">Cellphones &amp; Accesories</a></div>
+        <div class="cat_link"><a href="#">Computers &amp; Tablets</a></div>
+        <div class="cat_link"><a href="#">TV, Audio &amp; Surveilance</a></div>
+        <div class="cat_link"><a href="#">Vechile Electronics &amp; GPS</a></div>
+        <div class="cat_link"><a href="#">Video Games &amp; Consoles</a></div>
+      </div>
+      <div class="title">
+        <a href="index.html">PROG2 | MARKET</a>
+      </div>
     </header>
     <div class="container">
       <nav>
@@ -18,7 +31,7 @@
           <input type="search" name="search" id="search" class="searchfield" placeholder="Search a product..." autocomplete="off">
           <input type="submit" value="&#8677;" class="searchbutton">
         </form>
-        <h1>CATEGORIES</h1>
+        <h1 class="categories">CATEGORIES</h1>
         <ul class="menu">
           <li><a href="#">Cameras &amp; Photo</a></li>
           <li><a href="#">Cellphones &amp; Accesories</a></li>

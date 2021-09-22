@@ -50,6 +50,7 @@ header
  {
   background-color: #ed2e2b;
   height: 50px;
+	max-height: 360px;
   width: 100%;
   padding: 0.75rem;
   display: -webkit-box;
@@ -61,11 +62,12 @@ header
   -ms-flex-line-pack: justify;
   align-content: space-between;
   font-family: Calibri, sans-serif ;
+	overflow: visible;
 }
 header .title
 {
   font-weight: bold;
-  font-size: 2vh;
+  font-size: 1.2rem;
 }
 header .title a
 {
@@ -73,12 +75,57 @@ header .title a
   text-decoration: none;
 }
 
-.lines
+header .lines
 {
- display: none;
+	padding: 0;
+	max-height: 360px;
+	width: 100%;
+	overflow: visible;
 }
 
+header .categories, header .lines, header .cat_link
+{
+	display: none;
+}
 
+header .cat_link a
+{
+	margin: 0;
+	text-decoration: none;
+	color: black;
+	cursor: pointer;
+}
+
+header .cat_link:hover
+{
+	background-color: #39C2D7;
+}
+
+header .categories
+{
+	color: #39C2D7;
+}
+
+header .lines span
+{
+	display: flex;
+	flex-wrap: nowrap;
+	width: 100%;
+}
+
+header .lines .lines_picture
+{
+	cursor: pointer;
+}
+
+header .cat_link, header .categories
+{
+	font-size: 1.2rem;
+	text-align: center;
+	z-index: 1;
+	width: 100%;
+	height: 50px;
+}
 
 footer
 {
@@ -109,18 +156,42 @@ footer
 
 @media only screen and (max-width:600px)
 {
-  .title
+  header .title
 	{
   	display: none;
 	}
 
-	.lines
-  {
-    display: block;
-  }
+	.clicked_header
+	{
+		padding: 0;
+		height: 360px;
+	}
 
-  .lines img
+	header .lines
+	{
+		display: flex;
+		flex-wrap: nowrap;
+	}
+
+	header .lines.clicked
+	{
+		flex-wrap: wrap;
+		height: 360px;
+	}
+
+	header .lines.clicked .categories,header .lines.clicked .cat_link
+	{
+		display: block;
+	}
+
+	header .lines.clicked .categories
+	{
+		width: calc(100%-50px);
+	}
+
+  header .lines .lines_picture
   {
+		display: block;
     width: 50px;
   }
 }
@@ -135,6 +206,7 @@ nav
 {
   width: 28%;
   padding: 1%;
+	z-index: 0;
 }
 nav  h1
 {
@@ -167,7 +239,8 @@ nav ul.menu li a.active
 
 nav ul.menu li a:hover
 {
-	background-color: #ed2e2b;
+	background-color: #39C2D7;
+	color: white;
   opacity: 1;
 }
 
@@ -214,14 +287,24 @@ nav .searchbutton:hover
 		text-align: center;
 	}
 
+	nav .searchform
+	{
+		margin-bottom: 2%;
+	}
 	nav
 	{
 	  width: 100%;
 		padding: 0;
+		z-index: 0;
 	}
 	nav .menu
 	{
 	  font-size: 1.1rem;
+		display: none;
+	}
+	nav .categories
+	{
+		display: none;
 	}
 }
 
@@ -264,9 +347,9 @@ main
 	justify-content: space-between;
 	border: 5px #39C2D7 solid;
 	border-radius: 5px;
-	height: 14vh;
+	min-height: 20vh;
 	width: 31%;
-	margin: 1%;
+	margin: 0.5%;
 	padding: 5px;
 }
 
@@ -288,7 +371,7 @@ main
 
 .product_picture
 {
-	height: 30%;
+	height: 50%;
 	width: 33%;
 }
 
@@ -302,7 +385,7 @@ main
 
 .cart
 {
-	height: 30%;
+	max-height: 30%;
 	width: 15%;
 }
 
