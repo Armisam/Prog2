@@ -127,32 +127,57 @@ header .cat_link, header .categories
 	height: 50px;
 }
 
-footer
+header .your_cart
 {
-  background-color: black;
-  height: 50px;
-  width: 100%;
-  padding: 0.75rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -ms-flex-line-pack: justify;
-  align-content: space-between;
-  font-family: Calibri, sans-serif ;
-  text-align: center;
+	height: 50px;
+	width: 50px;
+	position: absolute;
+	right: 80px;
 }
 
-.copyright
+header .your_cart button
 {
-  color: #ed2e2b;
-  margin: 0 auto;
-  font-size: 1.2rem;
+	width: 100%;
+	height: 100%;
+	border: none;
+	color: white;
+	background-color: #3ed627;
+	cursor: pointer;
 }
 
+header .your_cart button:hover
+{
+	background-color: green;
+	color: #f7ea2d
+}
 
+header .sign_in , header .register
+{
+	font-size: 1rem;
+	position: absolute;
+	right: 10px;
+}
+
+header .sign_in a, header .register a
+{
+	text-decoration: none;
+	color: black;
+}
+
+header .sign_in
+{
+	top: 5px;
+}
+
+header .register
+{
+	top: calc(1rem + 10px);
+}
+
+header .sign_in:hover, header .register:hover
+{
+	text-decoration: underline;
+}
 
 @media only screen and (max-width:600px)
 {
@@ -161,7 +186,7 @@ footer
   	display: none;
 	}
 
-	.clicked_header
+	header.clicked
 	{
 		padding: 0;
 		height: 360px;
@@ -189,15 +214,17 @@ footer
 		width: calc(100%-50px);
 	}
 
+	header .lines.clicked ~ .sign_in , header .lines.clicked ~ .register, header .lines.clicked ~ .your_cart
+	{
+		display: none;
+	}
+
   header .lines .lines_picture
   {
 		display: block;
     width: 50px;
   }
 }
-
-
-
 
 
 /*navigation style*/
@@ -325,9 +352,6 @@ nav .searchbutton:hover
 
 
 
-
-
-
 /*main style*/
 
 main
@@ -351,6 +375,7 @@ main
 	width: 31%;
 	margin: 0.5%;
 	padding: 5px;
+	overflow: hidden;
 }
 
 .cart button
@@ -365,7 +390,7 @@ main
 
 .cart button:hover
 {
-		background-color:  green;
+		background-color: green;
 		color: #f7ea2d
 }
 
@@ -400,6 +425,7 @@ main
 {
 	width: 48%;
 	overflow: scroll;
+	max-height: 50%;
 }
 
 @media only screen and (max-width:600px)
@@ -430,4 +456,32 @@ main
 	{
 		font-size: 0.75rem;
 	}
+}
+
+
+
+/*footer style*/
+footer
+{
+  background-color: black;
+  height: 50px;
+  width: 100%;
+  padding: 0.75rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-line-pack: justify;
+  align-content: space-between;
+  font-family: Calibri, sans-serif ;
+  text-align: center;
+}
+
+.copyright
+{
+  color: #ed2e2b;
+  margin: 0 auto;
+  font-size: 1.2rem;
 }
