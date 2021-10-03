@@ -107,13 +107,14 @@ input[type="submit"]:hover
 
 a
 {
+	width: 100%;
 	text-decoration: none;
 	color: black;
 }
 
 span
 {
-	width: 22%;
+	width: 120px;
 	border: 1px #444 solid;
 	position: absolute;
 	right: 15px;

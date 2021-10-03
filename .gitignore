@@ -1,2 +1,4 @@
 assets/partials
+node_modules
+assets/scripts/package-lock.json
 media
