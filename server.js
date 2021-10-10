@@ -1,19 +1,18 @@
 const express = require('express');
 const app = express();
+const path = require('path');
 
-app.get('/', function (req, res) {
-  res.sendFile(__dirname + '/index.html');
+app.use('/', express.static(path.join(__dirname, '')));
+app.use(express.json());
+
+app.post('/', function(req, res){
+  console.log('Received!');
+  console.log(req.body.type);
+  console.log(req.body.username);
+  console.log(req.body.password);
+  console.log(req.body.password_confirm);
 });
-app.get('/register', function (req, res) {
-  res.sendFile(__dirname + '/register.html');
-});
-app.get('/sign_in', function (req, res) {
-  res.sendFile(__dirname + '/sign_in.html');
-});
 
-
-
-app.use(express.static('assets'));
 
 app.listen(3000, function () {
   console.log('Example app listening on port 3000!');

@@ -5,6 +5,28 @@
     <title>PROG2 | MARKET</title>
     <link rel="stylesheet" href="../styles/reset.css" type="text/css">
     <link rel="stylesheet" href="../styles/sign_in-register.css" type="text/css">
+    <script>
+    function resgistry() {
+      const username = document.getElementsByName('username')[0].value;
+      const password = document.getElementsByName('password')[0].value;
+      const password_confirm = document.getElementsByName('password_confirm')[0].value;
+
+      const json = JSON.stringify({type: 'resgistry', username: username, password: password,
+      password_confirm: password_confirm });
+
+      console.log(json);
+
+      const result = fetch('/', { 
+        method: 'POST',
+    	  headers: {
+    		'Content-Type': 'application/json'
+    		},
+    		body: json
+    	}).then((res) => res.json());
+
+
+    }
+    </script>
 </head>
 <body>
     <header>
@@ -15,16 +37,16 @@
     <div class="container">
       <main>
         <fieldset>
-          <form action="#" method="post">
+          <form method="post" action="javascript:void(0);" id="reg-form" onsubmit="resgistry()">
             <table>
               <tr>
-                <td><input type="text" name="" placeholder="Username"></td>
+                <td><input type="text" name="username" placeholder="Username" required></td>
               </tr>
               <tr>
-                <td><input type="password" name="" placeholder="Password"></td>
+                <td><input type="password" name="password" placeholder="Password" required></td>
               </tr>
               <tr>
-                <td><input type="password" name="" placeholder="Confirm password"></td>
+                <td><input type="password" name="password_confirm" placeholder="Confirm password" required></td>
                 <td><input type="submit" value="Register"></td>
               </tr>
             </table>
