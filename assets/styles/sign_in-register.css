@@ -80,6 +80,16 @@ main
 	padding-top: 16vh;
 }
 
+main h1
+{
+		text-align: left;
+		font-size: 1.5rem;
+		margin: 0 auto 1rem;
+		font-weight: bold;
+		font-variant: small-caps;
+		width: 239px;
+}
+
 fieldset table
 {
 	max-width: 50%;
@@ -100,7 +110,7 @@ input[type="submit"]
 	background-color: white;
 }
 
-input[type="submit"]:hover
+input[type="submit"]:hover, input[type="submit"]:focus
 {
 	background-color: #39C2D7;
 }

@@ -26,7 +26,7 @@ Responsive views supported(mobile,tablet,desktop)
 
 
 
-To run the server use the following command in main directory(express has to be installed by using ***npm install express***):
+To run the server use the following command in main directory(express,bcrypt has to be installed by using ***npm install express/bcrypt***):
 *******************************************************************************
 ```
 node server.js
