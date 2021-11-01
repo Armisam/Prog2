@@ -131,6 +131,14 @@ span
 	bottom: 100px;
 }
 
+@media only screen and (max-width:600px)
+{
+	span
+	{
+			display: none;
+	}
+}
+
 span:hover
 {
 	background-color: #39C2D7;

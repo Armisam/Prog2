@@ -14,6 +14,19 @@ app.post('/', async function (req, res){
   const password = req.body.password;
   const password_confirm = req.body.password_confirm;
 
+  if (password.length < 8) {
+    return res.json({ status: 'error', msg: 'Password is shorter than 8 characters!'});
+  }
+  else if (password.toUpperCase() == password) {
+    return res.json({ status: 'error', msg: 'Password is does not contain lowercase character!'});
+  }
+  else if (password.toLowerCase() == password) {
+    return res.json({ status: 'error', msg: 'Password is does not contain uppercase character!'});
+  }
+  else if (password.search(/\d/) == -1) {
+    return res.json({ status: 'error', msg: 'Password is does not contain numeric character!'});
+  }
+
   try {
     const hashPassword = await bcrypt.hash(password, saltRounds);
     const isMatch = await bcrypt.compare(password_confirm, hashPassword)
@@ -35,8 +48,8 @@ app.post('/', async function (req, res){
     return res.json({ status: 'OK', msg: 'User added! ' + username});
     }
     else {
-      console.log('Not matching password!');
-      return res.json({ status: 'error', msg: 'Not matching password!'});
+      console.log('Not matching passwords!');
+      return res.json({ status: 'error', msg: 'Not matching passwords!'});
     }
 
   } catch (error) {
