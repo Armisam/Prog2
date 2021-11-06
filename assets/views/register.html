@@ -6,15 +6,13 @@
     <link rel="stylesheet" href="../styles/reset.css" type="text/css">
     <link rel="stylesheet" href="../styles/sign_in-register.css" type="text/css">
     <script>
-    async function resgistry() {
+    async function register() {
       const username = document.getElementsByName('username')[0].value;
       const password = document.getElementsByName('password')[0].value;
       const password_confirm = document.getElementsByName('password_confirm')[0].value;
 
-      const json = JSON.stringify({type: 'resgistry', username: username, password: password,
+      const json = JSON.stringify({type: 'register', username: username, password: password,
       password_confirm: password_confirm });
-
-      console.log(json);
 
       const result = await fetch('/', {
         method: 'POST',
@@ -38,7 +36,7 @@
       <main>
         <h1>Register</h1>
         <fieldset>
-          <form method="post" action="javascript:void(0);" id="reg-form" onsubmit="resgistry()">
+          <form method="post" action="javascript:void(0);" id="reg-form" onsubmit="register()">
             <table>
               <tr>
                 <td><input type="text" name="username" placeholder="Username" required></td>
