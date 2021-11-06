@@ -18,6 +18,7 @@ app.post('/', async function (req, res){
   if (type == 'register') {
     const password_confirm = req.body.password_confirm;
     let isMatch = false;
+    let hashPassword;
     if (formData.password.length < 8) {
       console.log('Password is shorter than 8 characters!');
       return res.json({ status: 'error', msg: 'Password is shorter than 8 characters!'});
@@ -36,7 +37,7 @@ app.post('/', async function (req, res){
     }
 
     try {
-      const hashPassword = await bcrypt.hash(formData.password, saltRounds);
+      hashPassword = await bcrypt.hash(formData.password, saltRounds);
       isMatch = await bcrypt.compare(password_confirm, hashPassword);
     } catch (error) {
       console.log(error);
