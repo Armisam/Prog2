@@ -1,0 +1,158 @@
+{
+  "Cameras_Photo": [
+    {
+      "picture_source": "media/test.png",
+      "product_name": "Camera1",
+      "price": 200,
+      "description": "This is description for Camera1."
+    },
+    {
+      "picture_source": "media/test.png",
+      "product_name": "Camera2",
+      "price": 150,
+      "description": "This is description for Camera2."
+    },
+    {
+      "picture_source": "media/test.png",
+      "product_name": "Camera3",
+      "price": 100,
+      "description": "This is description for Camera3."
+    },
+    {
+      "picture_source": "media/test.png",
+      "product_name": "Camera4",
+      "price": 300,
+      "description": "This is description for Camera4."
+    }
+  ],
+  "Cellphones_Accesories": [
+    {
+      "picture_source": "media/test.png",
+      "product_name": "Cellphone1",
+      "price": 200,
+      "description": "This is description for Cellphone1."
+    },
+    {
+      "picture_source": "media/test.png",
+      "product_name": "Cellphone2",
+      "price": 150,
+      "description": "This is description for Cellphone2."
+    },
+    {
+      "picture_source": "media/test.png",
+      "product_name": "Cellphone3",
+      "price": 100,
+      "description": "This is description for Cellphone3."
+    },
+    {
+      "picture_source": "media/test.png",
+      "product_name": "Cellphone4",
+      "price": 300,
+      "description": "This is description for Cellphone4."
+    }
+  ],
+  "Computers_Tablets": [
+    {
+      "picture_source": "media/test.png",
+      "product_name": "Computer1",
+      "price": 200,
+      "description": "This is description for Computer1."
+    },
+    {
+      "picture_source": "media/test.png",
+      "product_name": "Computer2",
+      "price": 150,
+      "description": "This is description for Computer2."
+    },
+    {
+      "picture_source": "media/test.png",
+      "product_name": "Computer3",
+      "price": 100,
+      "description": "This is description for Computer3."
+    },
+    {
+      "picture_source": "media/test.png",
+      "product_name": "Computer4",
+      "price": 300,
+      "description": "This is description for Computer4."
+    }
+  ],
+  "TV_Audio_Surveilance": [
+    {
+      "picture_source": "media/test.png",
+      "product_name": "TV1",
+      "price": 200,
+      "description": "This is description for TV1."
+    },
+    {
+      "picture_source": "media/test.png",
+      "product_name": "TV2",
+      "price": 150,
+      "description": "This is description for TV2."
+    },
+    {
+      "picture_source": "media/test.png",
+      "product_name": "TV3",
+      "price": 100,
+      "description": "This is description for TV3."
+    },
+    {
+      "picture_source": "media/test.png",
+      "product_name": "TV4",
+      "price": 300,
+      "description": "This is description for TV4."
+    }
+  ],
+  "Vechile_Electronics_GPS": [
+    {
+      "picture_source": "media/test.png",
+      "product_name": "GPS1",
+      "price": 200,
+      "description": "This is description for GPS1."
+    },
+    {
+      "picture_source": "media/test.png",
+      "product_name": "GPS2",
+      "price": 150,
+      "description": "This is description for GPS2."
+    },
+    {
+      "picture_source": "media/test.png",
+      "product_name": "GPS3",
+      "price": 100,
+      "description": "This is description for GPS3."
+    },
+    {
+      "picture_source": "media/test.png",
+      "product_name": "GPS4",
+      "price": 300,
+      "description": "This is description for GPS4."
+    }
+  ],
+  "Video_Games_Consoles": [
+    {
+      "picture_source": "media/test.png",
+      "product_name": "Console1",
+      "price": 200,
+      "description": "This is description for Console1."
+    },
+    {
+      "picture_source": "media/test.png",
+      "product_name": "Console2",
+      "price": 150,
+      "description": "This is description for Console2."
+    },
+    {
+      "picture_source": "media/test.png",
+      "product_name": "Console3",
+      "price": 100,
+      "description": "This is description for Console3."
+    },
+    {
+      "picture_source": "media/test.png",
+      "product_name": "Console4",
+      "price": 300,
+      "description": "This is description for Console4."
+    }
+  ]
+}

@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>PROG2 | MARKET</title>
-    <link rel="stylesheet" href="../styles/reset.css" type="text/css">
-    <link rel="stylesheet" href="../styles/sign_in-register.css" type="text/css">
+    <link rel="stylesheet" href="home/assets/styles/reset.css" type="text/css">
+    <link rel="stylesheet" href="home/assets/styles/sign_in-register.css" type="text/css">
     <script>
     async function register() {
       const username = document.getElementsByName('username')[0].value;
       const password = document.getElementsByName('password')[0].value;
       const password_confirm = document.getElementsByName('password_confirm')[0].value;
 
-      const json = JSON.stringify({type: 'register', username: username, password: password,
+      const json = JSON.stringify({username: username, password: password,
       password_confirm: password_confirm });
 
-      const result = await fetch('/', {
+      const result = await fetch('/registry', {
         method: 'POST',
     	  headers: {
     		'Content-Type': 'application/json'
@@ -29,7 +29,7 @@
 <body>
     <header>
       <div class="title">
-        <a href="/">PROG2 | MARKET</a>
+        <a href="/home">PROG2 | MARKET</a>
       </div>
     </header>
     <div class="container">
@@ -51,7 +51,7 @@
             </table>
           </form>
         </fieldset>
-        <span><a href="/">back to the main page</a></span>
+        <span><a href="/home">back to the main page</a></span>
       </main>
     </div>
     <footer>

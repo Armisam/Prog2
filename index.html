@@ -6,6 +6,100 @@
     <link rel="stylesheet" href="assets/styles/reset.css" type="text/css">
     <link rel="stylesheet" href="assets/styles/index.css" type="text/css">
     <script type="text/javascript" src="assets/scripts/designer.js"></script>
+    <script>
+    var items = [];
+    window.addEventListener('load',  async (event) => {
+    items = [];
+
+      const result = await fetch('/load', {
+        method: 'GET',
+        headers: {
+        'Content-Type': 'application/json'
+      }
+      }).then((res) => res.json());
+
+      var main = document.getElementsByClassName('items')[0];
+      var item;
+      for (var i = 0; i < result.length; i++) {
+        item =
+          '<div class="item">' +
+            '<img src="' + result[i].picture_source + '" class="product_picture">' +
+            '<h1 class="product_name">' + result[i].product_name + '</h1>' +
+            '<span class="cart"><button>Add to cart</button></span>' +
+            '<h2 class="price">' + String(result[i].price) + '</h2>' +
+            '<span class="description">' + result[i].description + '</span>' +
+          '</div>';
+          main.innerHTML += item;
+          obj = {
+            product_name: result[i].product_name,
+            price: result[i].price,
+            picture_source: result[i].picture_source,
+            description: result[i].description
+          };
+          items.push(obj);
+      }
+    });
+    async function categories (category) {
+      category = '/' + category;
+      const result = await fetch(category, {
+        method: 'GET',
+        headers: {
+        'Content-Type': 'application/json'
+      }
+      }).then((res) => res.json());
+
+      items = [];
+      var main = document.getElementsByClassName('items')[0];
+      main.innerHTML = "";
+      var item;
+      for (var i = 0; i < result.length; i++) {
+        item =
+          '<div class="item">' +
+            '<img src="' + result[i].picture_source + '" class="product_picture">' +
+            '<h1 class="product_name">' + result[i].product_name + '</h1>' +
+            '<span class="cart"><button>Add to cart</button></span>' +
+            '<h2 class="price">' + String(result[i].price) + '</h2>' +
+            '<span class="description">' + result[i].description + '</span>' +
+          '</div>';
+          main.innerHTML += item;
+          obj = {
+            product_name: result[i].product_name,
+            price: result[i].price,
+            picture_source: result[i].picture_source,
+            description: result[i].description
+          };
+          items.push(obj);
+      }
+    }
+
+    function search_item() {
+      var search_string = document.getElementsByName('search')[0].value;
+      var main = document.getElementsByClassName('items')[0];
+      main.innerHTML = "";
+      var item;
+      var isEmpty = false;
+      console.log(items.length);
+      for (var i = 0; i < items.length; i++) {
+        if (items[i].product_name.includes(search_string)) {
+          item =
+            '<div class="item">' +
+              '<img src="' + items[i].picture_source + '" class="product_picture">' +
+              '<h1 class="product_name">' + items[i].product_name + '</h1>' +
+              '<span class="cart"><button>Add to cart</button></span>' +
+              '<h2 class="price">' + items[i].price + '</h2>' +
+              '<span class="description">' + items[i].description+ '</span>' +
+            '</div>';
+            main.innerHTML += item;
+            if (!isEmpty) {
+              isEmpty = true;
+            }
+        }
+      }
+      if (!isEmpty) {
+        alert('There is no item with the searched name!');
+      }
+    }
+    </script>
 </head>
 <body>
     <header>
@@ -14,101 +108,37 @@
           <img class="lines_picture" src="media/lines.png" onclick="clicked_header()">
           <h1 class="categories">CATEGORIES</h1 >
         </span>
-        <div class="cat_link"><a  href="#">Cameras &amp; Photo</a></div>
-        <div class="cat_link"><a href="#">Cellphones &amp; Accesories</a></div>
-        <div class="cat_link"><a href="#">Computers &amp; Tablets</a></div>
-        <div class="cat_link"><a href="#">TV, Audio &amp; Surveilance</a></div>
-        <div class="cat_link"><a href="#">Vechile Electronics &amp; GPS</a></div>
-        <div class="cat_link"><a href="#">Video Games &amp; Consoles</a></div>
+        <div class="cat_link"><a>Cameras &amp; Photo</a></div>
+        <div class="cat_link"><a>Cellphones &amp; Accesories</a></div>
+        <div class="cat_link"><a>Computers &amp; Tablets</a></div>
+        <div class="cat_link"><a>TV, Audio &amp; Surveilance</a></div>
+        <div class="cat_link"><a>Vechile Electronics &amp; GPS</a></div>
+        <div class="cat_link"><a>Video Games &amp; Consoles</a></div>
       </div>
       <div class="title">
-        <a href="index.html">PROG2 | MARKET</a>
+        <a href="/home">PROG2 | MARKET</a>
       </div>
       <span class="your_cart"><button>&#128722;</button></span>
-      <span class="sign_in"><a href="assets/views/sign_in.html">Sign in</a></span>
-      <span class="register"><a href="assets/views/register.html">Register</a></span>
+      <span class="sign_in"><a href="/sign_in">Sign in</a></span>
+      <span class="register"><a href="/register">Register</a></span>
     </header>
     <div class="container">
       <nav>
         <form class="searchform" method="get" onsubmit="return false">
           <input type="search" name="search" id="search" class="searchfield" placeholder="Search a product..." autocomplete="off">
-          <input type="submit" value="&#8677;" class="searchbutton">
+          <input type="submit" value="&#8677;" class="searchbutton" onclick="search_item()">
         </form>
         <h1 class="categories">CATEGORIES</h1>
         <ul class="menu">
-          <li><a href="#">Cameras &amp; Photo</a></li>
-          <li><a href="#">Cellphones &amp; Accesories</a></li>
-          <li><a href="#">Computers &amp; Tablets</a></li>
-          <li><a href="#">TV, Audio &amp; Surveilance</a></li>
-          <li><a href="#">Vechile Electronics &amp; GPS</a></li>
-          <li><a href="#">Video Games &amp; Consoles</a></li>
+          <li><a href="#Cameras_Photo" name="Cameras_Photo" onclick="categories(this.name)">Cameras &amp; Photo</a></li>
+          <li><a href="#Cellphones_Accesories" name="Cellphones_Accesories" onclick="categories(this.name)">Cellphones &amp; Accesories</a></li>
+          <li><a href="#Computers_Tablets" name="Computers_Tablets" onclick="categories(this.name)">Computers &amp; Tablets</a></li>
+          <li><a href="#TV_Audio_Surveilance" name="TV_Audio_Surveilance" onclick="categories(this.name)">TV, Audio &amp; Surveilance</a></li>
+          <li><a href="#Vechile_Electronics_GPS" name="Vechile_Electronics_GPS" onclick="categories(this.name)">Vechile Electronics &amp; GPS</a></li>
+          <li><a href="#Video_Games_Consoles" name="Video_Games_Consoles" onclick="categories(this.name)">Video Games &amp; Consoles</a></li>
         </ul>
       </nav>
-      <main>
-        <div class="item">
-          <img src="media/test.png" class="product_picture">
-          <h1 class="product_name">Yes</h1>
-          <span class="cart"><button>Add to cart</button></span>
-          <h2 class="price">unlimited</h2>
-          <span class="description">ggwpdsapdasddsadasdsadasdasdasdasdsadadasdadasdasdasdas</span>
-        </div>
-        <div class="item">
-          <img src="media/test.png" class="product_picture">
-          <h1 class="product_name">Yes</h1>
-          <span class="cart"><button>Add to cart</button></span>
-          <h2 class="price">unlimited</h2>
-          <span class="description">ggwpdsapdasddsadasd sadasdasdasdasdsadadasdadasdasdasdas</span>
-        </div>
-        <div class="item">
-          <img src="media/test.png" class="product_picture">
-          <h1 class="product_name">Yes</h1>
-          <span class="cart"><button>Add to cart</button></span>
-          <h2 class="price">unlimited</h2>
-          <span class="description">ggwpdsapdasddsad asdsadasdasdasdasdsadadasdadasdasdasdas</span>
-        </div>
-        <div class="item">
-          <img src="media/test.png" class="product_picture">
-          <h1 class="product_name">Yes</h1>
-          <span class="cart"><button>Add to cart</button></span>
-          <h2 class="price">unlimited</h2>
-          <span class="description">ggwpdsapdasddsadasds adasdasdasd asdsadadasdadasdasdasdas</span>
-        </div>
-        <div class="item">
-          <img src="media/test.png" class="product_picture">
-          <h1 class="product_name">Yes</h1>
-          <span class="cart"><button>Add to cart</button></span>
-          <h2 class="price">unlimited</h2>
-          <span class="description">ggwpdsapdasdds adasdsadasdasdasdasds adadasdad asdasdasdas</span>
-        </div>
-        <div class="item">
-          <img src="media/test.png" class="product_picture">
-          <h1 class="product_name">Yes</h1>
-          <span class="cart"><button>Add to cart</button></span>
-          <h2 class="price">unlimited</h2>
-          <span class="description">ggwpdsapdasddsadasdsadasdasdasdasdsadadasdadasdasdasdas</span>
-        </div>
-        <div class="item">
-          <img src="media/test.png" class="product_picture">
-          <h1 class="product_name">Yes</h1>
-          <span class="cart"><button>Add to cart</button></span>
-          <h2 class="price">unlimited</h2>
-          <span class="description">ggwpdsapdasddsadasdsadasdasdasdasdsadadasdadasdasdasdas</span>
-        </div>
-        <div class="item">
-          <img src="media/test.png" class="product_picture">
-          <h1 class="product_name">Yes</h1>
-          <span class="cart"><button>Add to cart</button></span>
-          <h2 class="price">unlimited</h2>
-          <span class="description">ggwpdsapdasddsadasdsadasdasdasdasdsadadasdadasdasdasdas</span>
-        </div>
-        <div class="item">
-          <img src="media/test.png" class="product_picture">
-          <h1 class="product_name">Yes</h1>
-          <span class="cart"><button>Add to cart</button></span>
-          <h2 class="price">unlimited</h2>
-          <span class="description">ggwpdsapdasddsadasdsadasdasdasdasdsadadasdadasdasdasdas</span>
-        </div>
-      </main>
+      <main class="items"></main>
     </div>
     <footer>
       <div class="copyright">(c) Made by Csaba Székely.</div>
