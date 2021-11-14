@@ -129,6 +129,7 @@ header .cat_link, header .categories
 
 header .your_cart
 {
+	display: none;
 	height: 50px;
 	width: 50px;
 	position: absolute;
@@ -137,6 +138,7 @@ header .your_cart
 
 header .your_cart button
 {
+	display: none;
 	width: 100%;
 	height: 100%;
 	border: none;
@@ -145,20 +147,32 @@ header .your_cart button
 	cursor: pointer;
 }
 
+header .your_cart.signed_in, header .your_cart button.signed_in, header .sign_out.signed_in
+{
+	display: inline-block;
+}
+
+header .sign_out
+{
+		top: calc(0.5rem + 7.5px);
+		display: none;
+}
+
 header .your_cart button:hover
 {
 	background-color: green;
 	color: #f7ea2d
 }
 
-header .sign_in , header .register
+header .sign_in , header .register, header .sign_out
 {
 	font-size: 1rem;
 	position: absolute;
 	right: 10px;
+	display: inline-block;
 }
 
-header .sign_in a, header .register a
+header .sign_in a, header .register a, header .sign_out a
 {
 	text-decoration: none;
 	color: black;
@@ -174,7 +188,12 @@ header .register
 	top: calc(1rem + 10px);
 }
 
-header .sign_in:hover, header .register:hover
+header .sign_in.signed_in, header .register.signed_in, header .sign_out
+{
+	display: none;
+}
+
+header .sign_in:hover, header .register:hover, header .sign_out:hover
 {
 	text-decoration: underline;
 }

@@ -6,11 +6,18 @@
     <link rel="stylesheet" href="home/assets/styles/reset.css" type="text/css">
     <link rel="stylesheet" href="home/assets/styles/sign_in-register.css" type="text/css">
     <script>
+    function setCookie(cname,cvalue,exdays) {
+    const d = new Date();
+    d.setTime(d.getTime() + (exdays*24*60*60*1000));
+    let expires = "expires=" + d.toGMTString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    }
+
     async function sign_in() {
       const username = document.getElementsByName('username')[0].value;
       const password = document.getElementsByName('password')[0].value;
 
-      const json = JSON.stringify({username: username, password: password });
+      const json = JSON.stringify({username: username, password: password});
 
       const result = await fetch('/signing_in', {
         method: 'POST',
@@ -20,7 +27,14 @@
         body: json
       }).then((res) => res.json());
 
+      if (result.status == 'ok') {
+        window.location.replace('/home');
+        setCookie("username", result.username, 365);
         alert(result.msg);
+      }
+      else {
+        alert(result.msg);
+      }
     }
     </script>
 </head>

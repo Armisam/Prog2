@@ -78,6 +78,7 @@ app.post('/registry', async function (req, res){
     }
 });
 
+var signedIn_Users = [];
 app.post('/signing_in', function (req, res){
   fs.readFile('assets/json/register.json', 'utf8', async function(err, data) {
     var jsonData = JSON.parse(data);
@@ -95,8 +96,15 @@ app.post('/signing_in', function (req, res){
         console.log(error);
       }
       if (jsonData.normalusers[i].username == formData.username && isMatch) {
-        console.log('Signed in as normal user!');
-        return res.json({ status: 'ok', msg: 'Signed in as normal user!'});
+        if (!signedIn_Users.includes(formData.username)) {
+          signedIn_Users.push(formData.username);
+          console.log('Signed in as normal user!');
+          return res.json({ status: 'ok', msg: 'Signed in as normal user!', username: formData.username});
+        }
+        else {
+          console.log('User already signed in!');
+          return res.json({ status: 'error;', msg: 'User already signed in!'});
+        }
       }
       i++;
     }
@@ -109,14 +117,38 @@ app.post('/signing_in', function (req, res){
         console.log(error);
       }
       if (jsonData.adminusers[i].username == formData.username && isMatch) {
-        console.log('Signed in as admin user!');
-        return res.json({ status: 'ok', msg: 'Signed in as admin user!'});
+        if (!signedIn_Users.includes(formData.username)) {
+          signedIn_Users.push(formData.username);
+          console.log('Signed in as admin user!');
+          return res.json({ status: 'ok', msg: 'Signed in as admin user!', username: formData.username});
+        }
+        else {
+          console.log('User already signed in!');
+          return res.json({ status: 'error;', msg: 'User already signed in!'});
+        }
       }
       i++;
     }
     console.log('Sign in failed!');
-    return res.json({ status: 'ok', msg: 'Sign in failed!'});
+    return res.json({ status: 'error', msg: 'Sign in failed!'});
   });
+});
+
+app.post('/signing_out', function (req, res){
+  var signed_out = false;
+
+  for( var i = 0; i < signedIn_Users.length; i++){
+        if (signedIn_Users[i] == req.body.username) {
+            signedIn_Users.splice(i, 1);
+            signed_out = true;
+        }
+    }
+    if (signed_out) {
+      return res.json({ status: 'ok', msg: 'Signing out was succesful!'});
+    }
+    else {
+      return res.json({ status: 'error', msg: 'Signing out was not succesful!'});
+    }
 });
 
 class item {
@@ -238,7 +270,6 @@ app.get('/Cellphones_Accesories', function (req, res){
   });
 });
 app.get('/Computers_Tablets', function (req, res){
-  console.log('gg');
   fs.readFile('assets/json/items.json', 'utf8', function(err, data){
     const jsonData = JSON.parse(data);
     var resArray = [];

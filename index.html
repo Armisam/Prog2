@@ -7,9 +7,32 @@
     <link rel="stylesheet" href="assets/styles/index.css" type="text/css">
     <script type="text/javascript" src="assets/scripts/designer.js"></script>
     <script>
+    function getCookie(cname) {
+      let name = cname + "=";
+      let decodedCookie = decodeURIComponent(document.cookie);
+      let ca = decodedCookie.split(';');
+      for(let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') {
+          c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+          return c.substring(name.length, c.length);
+        }
+      }
+      return "";
+    }
+
     var items = [];
     window.addEventListener('load',  async (event) => {
-    items = [];
+    let user = getCookie('username');
+    if (user != "") {
+      document.getElementsByClassName('sign_in')[0].classList.add('signed_in');
+      document.getElementsByClassName('register')[0].classList.add('signed_in');
+      document.getElementsByClassName('your_cart')[0].classList.add('signed_in');
+      document.getElementsByClassName('cart_button')[0].classList.add('signed_in');
+      document.getElementsByClassName('sign_out')[0].classList.add('signed_in');
+    }
 
       const result = await fetch('/load', {
         method: 'GET',
@@ -96,7 +119,30 @@
         }
       }
       if (!isEmpty) {
-        alert('There is no item with the searched name!');
+        alert('There is no item with the searched name! Go back to the homepage please!');
+      }
+    }
+
+    async function sign_out()
+    {
+      const username = getCookie('username');
+      const json = JSON.stringify({username: username});
+
+
+      const result = await fetch('/signing_out', {
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/json'
+      },
+      body: json
+      }).then((res) => res.json());
+
+      if (result.status == 'ok') {
+        document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        alert(result.msg);
+      }
+      else {
+        alert(result.msg);
       }
     }
     </script>
@@ -118,8 +164,9 @@
       <div class="title">
         <a href="/home">PROG2 | MARKET</a>
       </div>
-      <span class="your_cart"><button>&#128722;</button></span>
+      <span class="your_cart"><button class="cart_button">&#128722;</button></span>
       <span class="sign_in"><a href="/sign_in">Sign in</a></span>
+      <span class="sign_out"><a href="/home" onclick="sign_out()">Sign out</a></span>
       <span class="register"><a href="/register">Register</a></span>
     </header>
     <div class="container">
