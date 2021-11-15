@@ -5,8 +5,24 @@
     <title>PROG2 | MARKET</title>
     <link rel="stylesheet" href="assets/styles/reset.css" type="text/css">
     <link rel="stylesheet" href="assets/styles/index.css" type="text/css">
-    <script type="text/javascript" src="assets/scripts/designer.js"></script>
     <script>
+    var clicked = false;
+
+    function clicked_header() {
+      var header = document.getElementsByTagName('Header')[0];
+      var lines = document.getElementsByClassName('lines')[0];
+      if (clicked === true) {
+        header.classList.remove('clicked');
+        lines.classList.remove('clicked');
+        clicked = false;
+      }
+      else {
+        header.classList.add('clicked');
+        lines.classList.add('clicked');
+        clicked = true;
+      }
+    }
+
     function getCookie(cname) {
       let name = cname + "=";
       let decodedCookie = decodeURIComponent(document.cookie);
@@ -62,6 +78,7 @@
           items.push(obj);
       }
     });
+
     async function categories (category) {
       category = '/' + category;
       const result = await fetch(category, {
@@ -70,6 +87,7 @@
         'Content-Type': 'application/json'
       }
       }).then((res) => res.json());
+
 
       items = [];
       var main = document.getElementsByClassName('items')[0];
@@ -145,6 +163,21 @@
         alert(result.msg);
       }
     }
+
+    function adminadd(content)
+    {
+      if (content == 0) {
+        document.getElementsByTagName('table')[0].classList.add('clicked');
+        document.getElementsByName('addDiv')[0].classList.add('clicked');
+      }
+      else if (content == 1){
+        document.getElementsByTagName('table')[0].classList.remove('clicked');
+        document.getElementsByName('addDiv')[0].classList.remove('clicked');
+      }
+      else {
+        alert('Adding item was not succesful!')
+      }
+    }
     </script>
 </head>
 <body>
@@ -154,12 +187,12 @@
           <img class="lines_picture" src="media/lines.png" onclick="clicked_header()">
           <h1 class="categories">CATEGORIES</h1 >
         </span>
-        <div class="cat_link"><a>Cameras &amp; Photo</a></div>
-        <div class="cat_link"><a>Cellphones &amp; Accesories</a></div>
-        <div class="cat_link"><a>Computers &amp; Tablets</a></div>
-        <div class="cat_link"><a>TV, Audio &amp; Surveilance</a></div>
-        <div class="cat_link"><a>Vechile Electronics &amp; GPS</a></div>
-        <div class="cat_link"><a>Video Games &amp; Consoles</a></div>
+        <div class="cat_link" ><a href="#Cameras_Photo" name="Cameras_Photo" onclick="categories(this.name)">Cameras &amp; Photo</a></div>
+        <div class="cat_link" ><a href="#Cellphones_Accesories" name="Cellphones_Accesories" onclick="categories(this.name)">Cellphones &amp; Accesories</a></div>
+        <div class="cat_link" ><a href="#Computers_Tablets" name="Computers_Tablets" onclick="categories(this.name)">Computers &amp; Tablets</a></div>
+        <div class="cat_link" ><a href="#TV_Audio_Surveilance" name="TV_Audio_Surveilance" onclick="categories(this.name)">TV, Audio &amp; Surveilance</a></div>
+        <div class="cat_link" ><a href="#Vechile_Electronics_GPS" name="Vechile_Electronics_GPS" onclick="categories(this.name)">Vechile Electronics &amp; GPS</a></div>
+        <div class="cat_link" ><a href="#Video_Games_Consoles" name="Video_Games_Consoles" onclick="categories(this.name)">Video Games &amp; Consoles</a></div>
       </div>
       <div class="title">
         <a href="/home">PROG2 | MARKET</a>
@@ -185,7 +218,29 @@
           <li><a href="#Video_Games_Consoles" name="Video_Games_Consoles" onclick="categories(this.name)">Video Games &amp; Consoles</a></li>
         </ul>
       </nav>
-      <main class="items"></main>
+      <main class="items">
+        <div class="adminadd" >
+            <div name="addDiv"><button name="adminadd(0)" onclick="adminadd(0)">+</button></div>
+            <form method="post" action="javascript:void(0);" onsubmit="adminadd(1)">
+              <table>
+                <tr>
+                  <td><input type="text"  placeholder="picture_source" required></td>
+                </tr>
+                <tr>
+                  <td><input type="text"  placeholder="product_name" required></td>
+                <tr>
+                  <td><input type="number"  placeholder="price" required></td>
+                </tr>
+                <tr>
+                  <td><textarea required placeholder="description"></textarea></td>
+                </tr>
+                <tr>
+                  <td><input type="submit" value="Add"></td>
+                </tr>
+              </table>
+            </form>
+        </div>
+      </main>
     </div>
     <footer>
       <div class="copyright">(c) Made by Csaba Székely.</div>

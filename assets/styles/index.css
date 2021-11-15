@@ -250,7 +250,7 @@ header .sign_in:hover, header .register:hover, header .sign_out:hover
 
 nav
 {
-  width: 28%;
+  flex: 20%;
   padding: 1%;
 	z-index: 0;
 }
@@ -292,9 +292,14 @@ nav ul.menu li a:hover
 
 nav .searchform
 {
-  border: none;
   border-bottom: 1px #333 solid;
 }
+
+nav .searchfield:focus
+{
+	border: 5px solid #39C2D7;
+}
+
 nav .searchfield
 {
   border: none;
@@ -302,6 +307,13 @@ nav .searchfield
   margin: 0;
   width: 80%;
   font-size: 1rem;
+}
+
+nav .searchfield:hover
+{
+	border-color: #39C2D7;
+	color: white;
+  opacity: 1;
 }
 
 nav .searchbutton
@@ -375,7 +387,7 @@ nav .searchbutton:hover
 
 main
 {
-	width: 80%;
+	flex: 80%;
 	display: flex;
 	flex-wrap: wrap;
 	align-content: flex-start;
@@ -397,6 +409,80 @@ main
 	overflow: hidden;
 }
 
+.adminadd
+{
+	min-height: 20vh;
+	padding: 5px;
+	width: 31%;
+	margin: 0.5%;
+}
+
+.adminadd div
+{
+	margin: 0 auto;
+	width: calc(20vh - 10px);
+	height: calc(20vh - 10px);
+}
+
+.adminadd div.clicked
+{
+	display: none;
+}
+
+.adminadd table
+{
+	display: none;
+	width: 100%;
+}
+
+.adminadd table.clicked
+{
+	display: table;
+}
+
+.adminadd input, .adminadd textarea
+{
+	margin: 5px 0;
+	width: 100%;
+}
+
+.adminadd input:focus, .adminadd textarea:focus
+{
+	outline: none;
+	border: 5px solid #39C2D7;
+}
+
+.adminadd input[type="submit"]
+{
+	color: white;
+	background-color: #3ed627;
+	border: none;
+	border-radius: 10px;
+	cursor: pointer;
+	font-size: 1.2rem;
+	width: 33%;
+}
+
+.adminadd input[type="submit"]:hover
+{
+	background-color: green;
+	color: #f7ea2d
+}
+
+.adminadd button
+{
+	color: white;
+	border-radius: 50%;
+	background-color: #3ed627;
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+	line-height: 100%;
+	font-size: calc(20vh - 10px);
+	border: none;
+	cursor: pointer;
+}
+
 .cart button
 {
 	background-color: #3ed627;
@@ -407,7 +493,7 @@ main
 	width: 100%;
 }
 
-.cart button:hover
+.cart button:hover, .adminadd button:hover
 {
 		background-color: green;
 		color: #f7ea2d
@@ -449,6 +535,10 @@ main
 
 @media only screen and (max-width:600px)
 {
+	header
+	{
+		position: fixed;
+	}
 	main
 	{
 		width: 100%;
@@ -457,11 +547,21 @@ main
 	{
 		width: 100%;
 	}
+
+	.adminadd
+	{
+		width: 100%;
+	}
 }
 
 @media only screen and (min-width:600px) and (max-width:1040px)
 {
 	.item
+	{
+		width: 45%;
+	}
+
+	.adminadd
 	{
 		width: 45%;
 	}
