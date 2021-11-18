@@ -9,7 +9,7 @@
     var clicked = false;
 
     function clicked_header() {
-      var header = document.getElementsByTagName('Header')[0];
+      var header = item.getElementsByTagName('Header')[0];
       var lines = document.getElementsByClassName('lines')[0];
       if (clicked === true) {
         header.classList.remove('clicked');
@@ -40,8 +40,8 @@
     }
 
     var items = [];
-    window.addEventListener('load',  async (event) => {
     let user = getCookie('username');
+    window.addEventListener('load',  async (event) => {
     if (user != "") {
       document.getElementsByClassName('sign_in')[0].classList.add('signed_in');
       document.getElementsByClassName('register')[0].classList.add('signed_in');
@@ -64,7 +64,7 @@
           '<div class="item">' +
             '<img src="' + result[i].picture_source + '" class="product_picture">' +
             '<h1 class="product_name">' + result[i].product_name + '</h1>' +
-            '<span class="cart"><button>Add to cart</button></span>' +
+            '<span class="cart"><button onclick="addToCart(this)">Add to cart</button></span>' +
             '<h2 class="price">' + String(result[i].price) + '</h2>' +
             '<span class="description">' + result[i].description + '</span>' +
           '</div>';
@@ -76,6 +76,52 @@
             description: result[i].description
           };
           items.push(obj);
+      }
+
+      const json = JSON.stringify({username: user});
+      const admin = await fetch('/load', {
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/json'
+        },
+        body: json
+      }).then((res) => res.json());
+
+      if (admin == true) {
+          addbutton =
+          '<div class="adminadd">' +
+              '<div name="addDiv">' + '<button name="adminadd(0)" onclick="adminadd(0)">' + '+' + '</button>' + '</div>' +
+              '<form method="post" action="javascript:void(0);" onsubmit="adminadd(1)">' +
+                '<table>' +
+                  '<tr>' +
+                    '<td>' + '<input type="text"  placeholder="picture_source" name="picture_source" required>' + '</td>' +
+                  '</tr>' +
+                  '<tr>' +
+                    '<td>' + '<input type="text"  placeholder="product_name"  name="product_name"required>' + '</td>' +
+                  '<tr>' +
+                    '<td>' + '<input type="number"  placeholder="price" name="price" required>' + '</td>' +
+                  '</tr>' +
+                  '<tr>' +
+                    '<td>' + '<textarea required placeholder="description" name="description">' + '</textarea>' + '</td>' +
+                  '</tr>' +
+                  '<tr>' +
+                    '<td>' + '<input list="categories" name="categories" placeholder="Select a category!" equired>' + '</td>' +
+                    '<datalist id="categories">' +
+                      '<option value="Cameras_Photo">' +
+                      '<option value="Cellphones_Accesories">' +
+                      '<option value="Computers_Tablets">' +
+                      '<option value="TV_Audio_Surveilance">' +
+                      '<option value="Vechile_Electronics_GPS">' +
+                      '<option value="Video_Games_Consoles">' +
+                    '</datalist>' +
+                  '</tr>' +
+                  '<tr>' +
+                    '<td>' + '<input type="submit" value="Add">' + '</td>' +
+                  '</tr>' +
+                '</table>' +
+              '</form>' +
+          '</div>';
+          main.innerHTML += addbutton;
       }
     });
 
@@ -98,7 +144,7 @@
           '<div class="item">' +
             '<img src="' + result[i].picture_source + '" class="product_picture">' +
             '<h1 class="product_name">' + result[i].product_name + '</h1>' +
-            '<span class="cart"><button>Add to cart</button></span>' +
+            '<span class="cart"><button onclick="addToCart(this)">Add to cart</button></span>' +
             '<h2 class="price">' + String(result[i].price) + '</h2>' +
             '<span class="description">' + result[i].description + '</span>' +
           '</div>';
@@ -110,6 +156,52 @@
             description: result[i].description
           };
           items.push(obj);
+      }
+
+      const json = JSON.stringify({username: user});
+      const admin = await fetch('/load', {
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/json'
+        },
+        body: json
+      }).then((res) => res.json());
+
+      if (admin == true) {
+          addbutton =
+          '<div class="adminadd">' +
+              '<div name="addDiv">' + '<button name="adminadd(0)" onclick="adminadd(0)">' + '+' + '</button>' + '</div>' +
+              '<form method="post" action="javascript:void(0);" onsubmit="adminadd(1)">' +
+                '<table>' +
+                  '<tr>' +
+                    '<td>' + '<input type="text"  placeholder="picture_source" name="picture_source" required>' + '</td>' +
+                  '</tr>' +
+                  '<tr>' +
+                    '<td>' + '<input type="text"  placeholder="product_name"  name="product_name"required>' + '</td>' +
+                  '<tr>' +
+                    '<td>' + '<input type="number"  placeholder="price" name="price" required>' + '</td>' +
+                  '</tr>' +
+                  '<tr>' +
+                    '<td>' + '<textarea required placeholder="description" name="description">' + '</textarea>' + '</td>' +
+                  '</tr>' +
+                  '<tr>' +
+                    '<td>' + '<input list="categories" name="categories" placeholder="Select a category!" equired>' + '</td>' +
+                    '<datalist id="categories">' +
+                      '<option value="Cameras_Photo">' +
+                      '<option value="Cellphones_Accesories">' +
+                      '<option value="Computers_Tablets">' +
+                      '<option value="TV_Audio_Surveilance">' +
+                      '<option value="Vechile_Electronics_GPS">' +
+                      '<option value="Video_Games_Consoles">' +
+                    '</datalist>' +
+                  '</tr>' +
+                  '<tr>' +
+                    '<td>' + '<input type="submit" value="Add">' + '</td>' +
+                  '</tr>' +
+                '</table>' +
+              '</form>' +
+          '</div>';
+          main.innerHTML += addbutton;
       }
     }
 
@@ -126,7 +218,7 @@
             '<div class="item">' +
               '<img src="' + items[i].picture_source + '" class="product_picture">' +
               '<h1 class="product_name">' + items[i].product_name + '</h1>' +
-              '<span class="cart"><button>Add to cart</button></span>' +
+              '<span class="cart"><button onclick="addToCart(this)">Add to cart</button></span>' +
               '<h2 class="price">' + items[i].price + '</h2>' +
               '<span class="description">' + items[i].description+ '</span>' +
             '</div>';
@@ -137,7 +229,8 @@
         }
       }
       if (!isEmpty) {
-        alert('There is no item with the searched name! Go back to the homepage please!');
+        alert('There is no item with the searched name!');
+        location.reload();
       }
     }
 
@@ -156,28 +249,133 @@
       }).then((res) => res.json());
 
       if (result.status == 'ok') {
-        document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
         alert(result.msg);
       }
       else {
-        alert(result.msg);
+        alert(result.msg + ' Singning out by force!');
       }
+      document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     }
 
-    function adminadd(content)
+    async function adminadd(content)
     {
       if (content == 0) {
         document.getElementsByTagName('table')[0].classList.add('clicked');
         document.getElementsByName('addDiv')[0].classList.add('clicked');
       }
-      else if (content == 1){
-        document.getElementsByTagName('table')[0].classList.remove('clicked');
-        document.getElementsByName('addDiv')[0].classList.remove('clicked');
+      else if (content == 1) {
+        const picture_source = document.getElementsByName('picture_source')[0].value;
+        const product_name = document.getElementsByName('product_name')[0].value;
+        const price = document.getElementsByName('price')[0].value;
+        const description = document.getElementsByName('description')[0].value;
+        const category = document.getElementsByName('categories')[0].value;
+
+        const json = JSON.stringify({picture_source: picture_source, product_name: product_name,
+        price: parseInt(price), description: description, category: category});
+        const result = await fetch('/itemadd', {
+          method: 'POST',
+          headers: {
+          'Content-Type': 'application/json'
+          },
+          body: json
+        }).then((res) => res.json());
+        alert(result.msg)
+        location.reload();
       }
       else {
-        alert('Adding item was not succesful!')
+        alert('Adding item was not succesful!');
       }
     }
+
+    async function addToCart(button) {
+      if (user != "") {
+        item = button.parentElement.parentElement;
+        var source = item.getElementsByClassName('product_picture')[0].src;
+        source = source.split("/");
+        const picture_source = source[source.length-2] + '/' + source[source.length-1];
+        const product_name = item.getElementsByClassName('product_name')[0].innerHTML;
+        const price = item.getElementsByClassName('price')[0].innerHTML;
+        const description = item.getElementsByClassName('description')[0].innerHTML;
+
+        const json = JSON.stringify({product_name: product_name,
+        price: parseInt(price), description: description, picture_source: picture_source, username: user});
+        const result = await fetch('/addToCart', {
+          method: 'POST',
+          headers: {
+          'Content-Type': 'application/json'
+          },
+          body: json
+        }).then((res) => res.json());
+        alert(result.msg);
+        if (location.hash.includes('_')) {
+          categories(location.hash.slice(1));
+        }
+        else {
+          location.reload();
+        }
+      }
+      else {
+        alert('First you have to sign in!')
+      }
+    }
+
+    async function showCart(button)
+    {
+      button.style.color = '#f7ea2d';
+      button.style.backgroundColor = 'green';
+
+      const json = JSON.stringify({username: user});
+      const result = await fetch('/showCart', {
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/json'
+        },
+        body: json
+      }).then((res) => res.json());
+
+      if (result.status == 'error') {
+        alert(result.msg);
+        location.reload();
+      }
+
+      var main = document.getElementsByClassName('items')[0];
+      main.innerHTML = "";
+      var item;
+      for (var i = 0; i < result.length; i++) {
+        item =
+          '<div class="item">' +
+            '<img src="' + result[i].picture_source + '" class="product_picture">' +
+            '<h1 class="product_name">' + result[i].product_name + '</h1>' +
+            '<span class="cart"><button onclick="removeFromCart(this)">Remove item</button></span>' +
+            '<h2 class="price">' + String(result[i].price) + '</h2>' +
+            '<span class="description">' + result[i].description + '</span>' +
+          '</div>';
+          main.innerHTML += item;
+      }
+    }
+
+    async function removeFromCart(button) {
+      item = button.parentElement.parentElement;
+      var source = item.getElementsByClassName('product_picture')[0].src;
+      source = source.split("/");
+      const picture_source = source[source.length-2] + '/' + source[source.length-1];
+      const product_name = item.getElementsByClassName('product_name')[0].innerHTML;
+      const price = item.getElementsByClassName('price')[0].innerHTML;
+      const description = item.getElementsByClassName('description')[0].innerHTML;
+
+      const json = JSON.stringify({product_name: product_name,
+      price: parseInt(price), description: description, picture_source: picture_source, username: user});
+      const result = await fetch('/removeFromCart', {
+        method: 'POST',
+        headers: {
+        'Content-Type': 'application/json'
+        },
+        body: json
+      }).then((res) => res.json());
+      alert(result.msg);
+      showCart(button);
+    }
+
     </script>
 </head>
 <body>
@@ -197,7 +395,7 @@
       <div class="title">
         <a href="/home">PROG2 | MARKET</a>
       </div>
-      <span class="your_cart"><button class="cart_button">&#128722;</button></span>
+      <span class="your_cart"><button class="cart_button" onclick="showCart(this)">&#128722;</button></span>
       <span class="sign_in"><a href="/sign_in">Sign in</a></span>
       <span class="sign_out"><a href="/home" onclick="sign_out()">Sign out</a></span>
       <span class="register"><a href="/register">Register</a></span>
@@ -218,29 +416,7 @@
           <li><a href="#Video_Games_Consoles" name="Video_Games_Consoles" onclick="categories(this.name)">Video Games &amp; Consoles</a></li>
         </ul>
       </nav>
-      <main class="items">
-        <div class="adminadd" >
-            <div name="addDiv"><button name="adminadd(0)" onclick="adminadd(0)">+</button></div>
-            <form method="post" action="javascript:void(0);" onsubmit="adminadd(1)">
-              <table>
-                <tr>
-                  <td><input type="text"  placeholder="picture_source" required></td>
-                </tr>
-                <tr>
-                  <td><input type="text"  placeholder="product_name" required></td>
-                <tr>
-                  <td><input type="number"  placeholder="price" required></td>
-                </tr>
-                <tr>
-                  <td><textarea required placeholder="description"></textarea></td>
-                </tr>
-                <tr>
-                  <td><input type="submit" value="Add"></td>
-                </tr>
-              </table>
-            </form>
-        </div>
-      </main>
+      <main class="items"></main>
     </div>
     <footer>
       <div class="copyright">(c) Made by Csaba Székely.</div>

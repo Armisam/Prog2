@@ -1,4 +1,16 @@
 {
-  "normalusers": [],
-  "adminusers": []
+  "normalusers": [
+    {
+      "username": "Armisam",
+      "password": "$2b$10$rzGxp3S5qb3M2jJAwHMT9e7C597Turv.xOsQLbHT1aWwUDfl3Ft7a",
+      "cart": []
+    }
+  ],
+  "adminusers": [
+    {
+      "username": "JVOK3R",
+      "password": "$2b$10$6IgmYjWLWMF5fOXrWVvV4usC/HAQNud7yqdaGMnpIJ89aA0MudXpe",
+      "cart": []
+    }
+  ]
 }

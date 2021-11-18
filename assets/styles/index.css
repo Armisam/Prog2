@@ -161,7 +161,7 @@ header .sign_out
 header .your_cart button:hover
 {
 	background-color: green;
-	color: #f7ea2d
+	color: #f7ea2d;
 }
 
 header .sign_in , header .register, header .sign_out
